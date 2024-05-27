@@ -1,0 +1,354 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+:root{
+    --primaryColor:#ffff;
+    --secondaryColor:#024e31;
+    --tertiaryColor:#060216;
+    --dimWhite:#e7e5e5;
+
+}
+
+/* for chrome */
+::-webkit-scrollbar{
+    width: 50px;
+}
+
+/* for chrome */
+::-webkit-scrollbar-thumb{
+    background-color: #024e31;
+}
+
+
+/* for mozilla */
+::-moz-scrollbar{
+    width: 0.7px;
+}
+
+/* for mozilla */
+::-moz-scrollbar-thumb{
+    width: 50px;
+}
+
+
+/* hide the scroll bar */
+::-webkit-scrollbar{
+    display: none;
+}
+::-webkit-scrollbar{
+    display: none;
+}
+::-webkit-scrollbar{
+    width: none;
+}
+
+.thin_scroll{
+    scrollbar-width: thin;
+}
+body{
+    padding-top: 20px;
+    padding-left: 80px;
+    padding-right: 50px;
+    padding-bottom: 20px;
+    background:var(--dimWhite);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.mainStatusBar{
+    display: flex;
+    height: 170px;
+    width:100%;
+    background: var(--dimWhite);
+    padding: 10px;
+}
+
+
+.statusBox{
+    background: var(--primaryColor);
+    height: 100%;
+    width: 23%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.statusBox>.upperStatus{
+    /* border:1px solid red; */
+    height: 60%;
+    display: flex;
+    background: var(--dimWhite);
+}
+
+.statusBox> .upperStatus> .design{
+    background: var(--secondaryColor);
+    height: 100%;
+    width: 2%;
+}
+
+.statusBox> .upperStatus> .info{
+    /* background: pink; */
+    width: 60%;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+
+}
+.info>p{
+    font-size: 15px;
+
+}
+
+.statusBox> .upperStatus> .status_image{
+    background: rgba(8, 255, 111, 0.521);
+    width: 20%;
+    height: 39px;
+    margin-left: 46px;
+}
+
+.statusBox> .upperStatus> .status_image>img{
+        height: 100%;
+        width: 100%;
+}
+
+
+.statusBox> .lowerStatus{
+    margin-top: 20px;
+
+}
+
+
+
+#revenue{
+    margin-left: 20px;
+}
+
+#employee{
+    margin-left: 20px;
+}
+
+
+#profits{
+    margin-left: 20px;
+}
+
+
+
+.recentTransactions{
+    width: 96.3%;
+    height: 380px;
+    background: #ffffff;
+    margin-left: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.recentTransactions> .topOrderBar{
+    background:rgba(4, 170, 73, 0.87);
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    /* border-bottom-right-radius: 5px; */
+
+}
+
+.recentTransactions> .topOrderBar>p{
+    color: var(--primaryColor);
+    margin-left: 9px;
+}
+
+.recentTransactions> .topOrderBar>select{
+    height: 24px;
+    width: 228px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+
+}
+
+.recentTransactions> .topOrderBar>select>option{
+    background:rgba(4, 170, 73, 0.87);
+    color: var(--primaryColor);
+    
+}
+.recentTransactions> .topOrderBar>select>option:hover{
+    background: #fa0000;
+}
+
+
+.recentTransactions> .table_attributes{
+    display: flex;
+    align-items: center;
+     border-bottom: 3px solid var(--dimWhite);
+     height: 40px;
+    
+    
+}
+
+
+
+.no{
+    /* background: #fa0000; */
+    width: 7%;
+}
+
+
+.Emp{
+    /* background: palevioletred; */
+    width:10% ;
+}
+.custid{
+    /* background: rgb(190, 0, 63); */
+    width:10% ;
+}
+.custN{
+    /* background: rgb(108, 190, 0); */
+    width:23% ;
+    display: flex;
+}
+.custN>img{
+    height: 20px;
+    width: 30px;
+}
+
+.pdt{
+    /* background: rgb(0, 13, 190); */
+    width:10% ;
+    display: flex;
+}
+
+.pdt>img{
+    height: 20px;
+    width: 30px;
+}
+.qty{
+    /* background: rgb(190, 0, 190); */
+    width:5% ;
+}
+.prc{
+    /* background: rgb(246, 250, 9); */
+    width:10% ;
+}
+/* .tt{
+    background: rgb(123, 151, 101);
+    width:10% ;
+} */
+.st{
+    /* background: rgb(122, 100, 107); */
+    width:10% ;
+}
+.Dt{
+    /* background: rgb(190, 22, 0); */
+    width:15% ; 
+}
+
+
+
+
+.orderRow{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    border-bottom: 3px solid var(--dimWhite);
+    
+}
+
+
+
+
+
+
+
+/* MEDIA QUERY AND RESPONSIVENESS */
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* border:1px solid blue ; */
+    }
+    .mainStatusBar{
+        height: 800px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* border: 1px solid red; */
+        width: 150%;
+        margin-right: 6%;
+        padding: 5%;
+    }
+    
+    .statusBox{
+        width: 90%;
+        margin-top: 10px;
+        /* border: 1px solid rgb(1, 5, 44); */
+        margin-right:15% ;
+    }
+
+    .box1{
+        margin-left: 6%;
+    }
+
+    .recentTransactions{
+        width: 128%;
+        margin-right: 24%;
+
+
+
+    }
+
+    .topOrderBar>p{
+        font-size: 80%;
+    }
+
+    .table_attributes p{
+        font-size: 50%;
+    }
+
+    .orderRow p{
+        font-size: 50%;
+    }
+    .orderRow img{
+        width: 20%;
+    }
+
+
+
+}
+
+
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+    @media only screen and (min-width: 600px) {
+
+        
+
+    }
+
+    /* Medium devices (landscape tablets, 768px and up) */
+    @media only screen and (min-width: 768px) {
+        
+
+    }
+
+    /* Large devices (laptops/desktops, 992px and up) */
+    @media only screen and (min-width: 992px) {
+
+    }
+
+    /* Extra large devices (large laptops and desktops, 1200px and up) */
+    @media only screen and (min-width: 1200px) {
+
+    }

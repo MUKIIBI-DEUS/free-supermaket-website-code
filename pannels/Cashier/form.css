@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+
+body{
+    padding: 50px;
+    background: rgb(158, 69, 69);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form{
+    background:white;
+    padding: 50px; 
+    width: 50%;
+    border-radius: 10px;
+    border: 5px solid rgb(92, 91, 91);
+    
+    
+}
+h4{
+    color: white;
+}
+label{
+    color: rgb(22, 21, 21);
+}
+.mb-3>input{
+    border: 2px solid rgb(19, 19, 19);
+}
+.addUser{
+    color: white;
+    background-color: rgb(9, 54, 9);
+}

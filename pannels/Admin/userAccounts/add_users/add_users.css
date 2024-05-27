@@ -1,0 +1,42 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+:root{
+    --primaryColor:#ffff;
+    --secondaryColor:#024e31;
+    --lightPrimary:#00a529b9;
+    --tertiaryColor:#060216;
+    --dimWhite:#e7e5e5;
+
+}
+
+
+
+
+body{
+    position: relative;
+    background: var(--primaryColor);
+    width: 100%;
+    height: 500px;
+    border-radius: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-top: 10px;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 100px;
+    
+}
+
+input{
+    outline: none;
+}
+select{
+    cursor: pointer;
+}
+
+#lightgreen{
+    background: var(--lightPrimary);
+    color: #fff;
+}

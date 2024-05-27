@@ -1,0 +1,383 @@
+*{
+    padding: 0;
+    margin: 0;
+    overflow: auto;
+    
+}
+
+/* variables */
+:root{
+    --primaryColor:#ffff;
+    --secondaryColor:#024e31;
+    --lightPrimary:#00a529b9;
+    --tertiaryColor:#060216;
+    --dimWhite:#e7e5e5;
+
+}
+body{
+   
+    background: rgb(255, 255, 255);
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--secondaryColor);
+}
+
+.main_container{
+    background: #060216;
+    height:100vh;
+    display: flex;
+    align-items: center;
+ 
+}
+
+/* SIDEBAR */
+.left_sidebar{
+    background:var(--secondaryColor);
+    height: 100vh;
+    width: 20%;
+    overflow-x: hidden;
+
+
+}
+.left_sidebar::-webkit-scrollbar{
+    display: none;
+}
+
+.company_title{
+    height: 40px;
+    width: 100%;
+    background: var(--secondaryColor);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    overflow:hidden;
+
+}
+
+.company_title> .pack1{
+    display: flex;
+    overflow:hidden;
+  
+    
+    /* background: rgb(231, 231, 231) ; */
+    
+}
+
+/* icon image */
+.company_title> .pack1>img{
+    /* border: 4px solid red; */
+    height: 50px;
+    width: 50px;
+
+}
+
+.company_title> .pack1>h3{
+    font-size: 20px;
+    color: var(--primaryColor);
+    display: flex;
+    align-items: center;
+    margin-left: 3px;
+}
+.company_title> .moto{
+    font-size: 11px;
+    width: 100%;
+    color: var(--primaryColor);
+    text-align: center;
+}
+
+.moto::-webkit-scrollbar{
+    display: none;
+
+}
+
+.moto{
+    overflow:hidden;
+}
+
+#menuSeparator{
+    width: 100%;
+    height: 2px;
+    background: var(--primaryColor);
+}
+
+
+
+.mainMenuTitle{
+    margin-top: 10px;
+}
+.mainMenuTitle>h1{
+    font-size: 18px;
+    background: var(--secondaryColor);
+    color: var(--primaryColor);
+    margin-left: 24px;
+
+
+}
+
+
+
+
+.Option{
+    background:var(--secondaryColor);
+    height: 10px;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    align-items:center;
+    cursor: pointer;
+}
+
+.Option::-webkit-scrollbar{
+    display: none;
+}
+
+p::-webkit-scrollbar{
+    display: none;
+    color: red;
+
+}
+
+
+/* selected background colour */
+.selected{
+    background: var(--lightPrimary);}
+/* used in js to change option color on click */
+
+
+.Option>img{
+    height: 30px;
+    width: 40px;
+    background: var();
+
+}
+.Option>p{
+    margin-left: 13px;
+    cursor: pointer;
+    color: var(--primaryColor);
+}
+
+#logout{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--lightPrimary);
+    width: 70px;
+    height: 30px;
+    padding: 20px;
+    position: absolute;
+    top:70px;
+    left: 20.2%;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    
+}
+#logout>img{
+ 
+    height: 20px;
+    width: 40px;
+
+}
+#logout>p{
+    /* margin-left: 13px; */
+    cursor: pointer;
+    color: var(--primaryColor);
+    font-size: 10px;
+}
+
+
+
+
+/* LEFTCONTAINER */
+.middle_container{
+    background: pink;
+    height: 100vh;
+    width: 80%;
+    /* border: 1px solid red; */
+}
+.topBar{
+    display: flex;
+    background: var(--primaryColor);
+    width: 100%;
+    height: 10%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* .topBar> .welcomeBar{
+
+}
+
+.topBar> .welcomeBar>p{
+    font-weight: bold;
+
+}
+
+.topBar> .topBarsearch{
+    
+} */
+.topBarsearch>input{
+    outline: none;
+    height: 30px;
+    border-radius: 3px;
+    border: 1px solid rgb(77, 77, 77);
+    text-align: center;
+
+}
+
+.alertBar>img{
+    height: 30px;
+    width: 40px;
+}
+.alertBar> #message{
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.alertBar> #notification{
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+
+
+#separator{
+    background: gray;
+    height: 30px;
+    width:1px;
+}
+
+.adminDetails{
+    display: flex;
+    margin-left: 20px;
+    align-items: center;
+}
+.adminDetails>img{
+    height: 30px;
+    width: 40px;
+}
+.adminDetails>p{
+    font-weight:bold;
+}
+
+
+
+/* optionDisplay */
+#optionDisplay{
+    background: rgb(243, 243, 243);
+    height: 90%;
+    width:100%;
+    /* border: 1px solid var(--secondaryColor); */
+
+}
+
+
+
+
+/* MEDIA QUERY AND RESPONSIVENESS */
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .left_sidebar{
+        background:var(--secondaryColor);
+        overflow-x: hidden;
+    }
+
+
+    .company_title{
+        /* border: 2px solid paleturquoise; */
+        width: 50px;
+        
+    }
+    .company_title> .pack1{
+        display: flex;
+        flex-direction: column;
+        font-size: 2px;
+        height: 40px;
+        /* border: 4px solid red; */
+        
+        margin-left: -16px;
+        height: 60px;
+        padding: -20px;
+        overflow-y: hidden;
+
+
+    }
+    
+    
+
+
+
+    #companyTitle{
+        font-size: 400%;
+        margin-top: 1px;
+        overflow-y: hidden;
+    }
+    .moto{
+        display: none;
+    }
+
+    .mainMenuTitle{
+        margin-top: 1px;
+        display: flex;
+        
+
+    }
+
+    .mainMenuTitle>h1{
+        font-size:60%;
+        margin-left: 19%;
+
+    }
+
+    .Option{
+        margin-top: 5px;
+    }
+    .Option>p{
+        display: none;
+    }
+
+    .topBar{
+        /* border: 5px solid red; */
+        overflow-x: hidden;
+        /* display: none; */
+    }
+
+    #separator,.topBarsearch,.alertBar{
+        visibility: hidden;
+
+    }
+    .welcomeBar{
+        width: 100px;
+    }
+    .welcomeBar>p{
+        font-size: 62%;
+        font-weight:200;
+    }
+    .adminDetails{
+        margin-left: -65%;
+    }
+
+
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+}
