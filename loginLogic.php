@@ -8,7 +8,7 @@
     $userPasswordjkt=$_POST['userPassword'];//fetch userpassword;
 
 
-    $conn=mysqli_connect("localhost","root","","freshmart");//create acconection to mysql database
+    include('assets/database_connect/database.php');//including the sql server connect logic
 
          //check if all inputs are set including the button
     if(isset($_POST['submitForm']) && isset($_POST['userName']) && isset($_POST['userPassword']) ){
@@ -19,7 +19,7 @@
    
 
         if($conn){//check connection if is true/false
-            $sql="select * from employee where userName=? and e_password=? and loginStatus='false'";
+            $sql="select * from employee where userName=? and e_password=?";
 
             $stmt = mysqli_prepare($conn, $sql);
 
@@ -87,7 +87,7 @@
                     echo "<script>alert($loginStatus)</script>";
 
                     //check if there is a session variable and the loginStatus is false
-                    if(isset($_SESSION['userName'])  && $loginStatus==="false" ){
+                    if(isset($_SESSION['userName'])){
                         $_SESSION['last_activity'] = time();
 
                         //load the admin and set loginStatus to true
@@ -102,7 +102,7 @@
                         $sqlLoginLog="insert into userlogindetails(user_id) values($userId)";
 
                         $results2=mysqli_query($conn,$sqlLoginLog);//execute filling in user loginDetails
-                        $last_id=mysqli_insert_id($conn);//fetching the last id in the userLoginDetails table
+                        $last_id=mysqli_insert_id($conn);//fetching the last id of the current session
 
                         $_SESSION['lastId']=$last_id;//setting the last id session variable
 
@@ -142,11 +142,11 @@
                     echo "<script>alert($loginStatus)</script>";
 
                     //check if there is a session variable and the loginStatus is false
-                    if(isset($_SESSION['userName'])  && $loginStatus==="false" ){
+                    if(isset($_SESSION['userName'])){
                         $_SESSION['last_activity'] = time();
 
                         //load the admin and set loginStatus to true
-                        header('location:pannels/Cashier/cash.php');
+                        header('location:pannels/Cashier/salesPannel.php');
 
 
                         // $userId=$_SESSION['userId'];

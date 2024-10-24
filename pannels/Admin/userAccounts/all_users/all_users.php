@@ -15,9 +15,64 @@
     <link rel="stylesheet" href="all_users.css">
     <link rel="stylesheet" href="bootstrap.css">
 
+
+    <style>
+        #loader{
+            position:fixed;
+            width: 100%;
+            top:0;
+            left:0;
+            bottom:0;
+            background:#E7E5E5;
+            color:#024E31;
+            z-index:9999;
+            height:100%;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            /* border-radius:9px; */
+
+           
+        }
+        .boxSized{
+            margin-left:20px;
+        }
+
+
+
+    </style>
+
 </head>
 
 <body>
+
+<div id="loader">
+
+<div class="spinner-border text-success" role="status">
+    <span class="visually-hidden">Loading--------</span>  
+    <h1>F</h1>          
+</div>
+
+<span class="boxSized"></span>
+
+<h1>Fresh Mart</h1>
+
+<span class="boxSized"></span>
+
+<h6>please wait</h6>
+<h6>------</h6>
+
+
+
+
+
+
+</div>
+
+<!-- LOADER  END-->
+
+
+
     <div class="searchUsers">
         <div class="search">
             <input type="text" placeholder="Search user">
@@ -239,7 +294,18 @@
 
 
 
-
+        <script>
+            //Handle the loader 
+document.onreadystatechange=function(){
+    if(document.readyState !=="complete"){
+        document.querySelector('#loader').style.display="flex";//enable the loader if the page isnt fully loaded
+        console.log("page isnt ready");
+    }else{
+        document.querySelector('#loader').style.display="none";//disable the loader if the page is fully loaded
+        console.log("page is ready");
+    }
+}
+        </script>
     <script src="all_users.js"></script>
 </body>
 </html>

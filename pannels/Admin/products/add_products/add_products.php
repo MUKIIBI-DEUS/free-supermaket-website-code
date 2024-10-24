@@ -9,8 +9,53 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+    <style>
+        #loader{
+            position:fixed;
+            width: 100%;
+            top:0;
+            left:0;
+            bottom:0;
+            background:gray;
+            color:white;
+            z-index:9999;
+            height:100%;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            border-radius:9px;
+
+           
+        }
+        #boxSized{
+            margin-left:20px;
+        }
+
+
+
+    </style>    
+
 </head>
 <body>
+<!-- LOADER -->
+
+<div id="loader">
+
+<div class="spinner-border text-light" role="status">
+    <span class="visually-hidden">Loading--------</span>            
+</div>
+
+<span id="boxSized"></span>
+
+<h1>Fresh Mart</h1>
+
+
+
+
+
+</div>
+
+<!-- LOADER  END-->    
         <form action="databaseLogic.php" method="post" enctype="multipart/form-data">
 
 
@@ -56,23 +101,44 @@
 
         </div>
    
+        <!-- Product buying price -->
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Buying price (only numbers or digits)</label>
 
+            <input type="number" class="form-control" name="buyingPrice" required autocomplete="off" min="100">
+
+        </div>
 
 
 <!-- Product UnitCOst -->
 <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">UnitCost (only numbers or digits)</label>
+            <label for="exampleInputEmail1" class="form-label">Selling cost (only numbers or digits)</label>
 
             <input type="number" class="form-control" name="unitcost" required autocomplete="off" min="100">
 
         </div>
+
+
+
+<!-- Product expiry Date -->
+        <!--  -->
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Expiry Date</label>
+
+            <input type="date" class="form-control" name="expiry_date" required autocomplete="off" >
+
+        </div>        
+
+
+
+
 
 <!-- Product starting Stock -->
         <!--  -->
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Initial Stock (Starting Stock)</label>
 
-            <input type="number" class="form-control" name="initialStock" required autocomplete="off" >
+            <input type="number" class="form-control" name="initialStock" required autocomplete="off" min=1>
 
         </div>
 
@@ -109,7 +175,19 @@
 
     
 
-
+        <script>
+            //Handle the loader 
+document.onreadystatechange=function(){
+    if(document.readyState !=="complete"){
+        document.querySelector('#loader').style.display="flex";//enable the loader if the page isnt fully loaded
+        console.log("page isnt ready");
+    }else{
+        document.querySelector('#loader').style.display="none";//disable the loader if the page is fully loaded
+        console.log("page is ready");
+    }
+}
+        </script>
+    <script src="allproducts.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="add_products.js"></script>
 </body>

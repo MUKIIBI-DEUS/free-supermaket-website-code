@@ -1,7 +1,10 @@
     
     console.log("hello it works" );
 
-
+  //reload page after givem minutes to check for active time
+  setTimeout(() => {
+    window.location.reload();
+}, 660000 ); // Refresh every 10 minutes
 
     // Admin functionality
 
@@ -40,8 +43,16 @@
     });
 
 
-    //LOAD THE SUPPLIERS PLAY
+    //LOAD THE RE ORDER PRODUCTS PLAY
     optionPlay[2].addEventListener('click',()=>{
+        loadPage("re_order_products/inventory.php");
+        console.log("products clicked");
+
+    });    
+
+
+    //LOAD THE SUPPLIERS PLAY
+    optionPlay[3].addEventListener('click',()=>{
         loadPage("suppliers/suppliersFirst.php");
         console.log("suppliers clicked");
 
@@ -50,18 +61,24 @@
 
 
     //LOAD SALES PLAY
-    optionPlay[3].addEventListener('click',()=>{
+    optionPlay[4].addEventListener('click',()=>{
         loadPage("sales/sales_first.php");
         console.log("suppliers clicked");
 
     });
 
 
+    //LOAD PROFITS PLAY
+    optionPlay[5].addEventListener('click',()=>{
+        loadPage("profits/profits_first.php");
+        console.log("logs clicked");
 
-    //LOAD USERS PLAY
-    optionPlay[4].addEventListener('click',()=>{
-        loadPage("userAccounts/usersFirst.php");
-        console.log("suppliers clicked");
+    });    
+
+    // LOAD LOGS
+    optionPlay[6].addEventListener('click',()=>{
+        loadPage("logs/logs_first.php");
+        console.log("logs clicked");
 
     });
 

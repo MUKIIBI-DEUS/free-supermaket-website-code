@@ -1,0 +1,219 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+:root{
+    --primaryColor:#ffff;
+    --secondaryColor:#024e31;
+    --lightPrimary:#00a529b9;
+    --tertiaryColor:#060216;
+    --dimWhite:#e7e5e5;
+    --black:#0000;
+    --tight:#fce40e;
+    --redColor:#f30404;
+
+}
+
+
+/* for chrome */
+::-webkit-scrollbar{
+    width: 50px;
+}
+
+/* for chrome */
+::-webkit-scrollbar-thumb{
+    background-color: #024e31;
+}
+
+
+/* for mozilla */
+::-moz-scrollbar{
+    width: 0.7px;
+}
+
+/* for mozilla */
+::-moz-scrollbar-thumb{
+    width: 50px;
+}
+
+
+/* hide the scroll bar */
+::-webkit-scrollbar{
+    display: none;
+}
+::-webkit-scrollbar{
+    display: none;
+}
+::-webkit-scrollbar{
+    width: none;
+}
+
+.thin_scroll{
+    scrollbar-width: thin;
+}
+
+body{
+    position: relative;
+    background: var(--primaryColor);
+    width: 100%;
+    height: 500px;
+    border-radius: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+table{
+    margin-top: 2px;
+}
+/* TABLE HEAD */
+thead{
+    background: #018c2a;
+    color: #e3e6e4;
+}
+
+
+
+
+/* START */
+.searchProducts{
+    background: #e3e6e4;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-radius:5px ;
+
+}
+.searchProducts> .search{
+    margin-left: 4px;
+}
+.searchProducts> .search>input{
+    border: 2px solid var(--dimWhite);
+    height: 30px;
+    border-radius: 5px;
+    outline: none;
+    padding: 2px;
+}
+.searchProducts> .search>button{
+    cursor: pointer;
+    background-color:#10127a;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    color: var(--primaryColor);
+    width: 80px;
+
+}
+
+.searchProducts>select{
+    border: none;
+    outline: none;
+    height: 30px;
+    border-radius: 5px;
+    margin-left: 30%;
+}
+
+
+
+.actions{
+    cursor: pointer;
+    color: var(--redColor);
+}
+.addStockBtn{
+    background: var(--lightPrimary);
+    border:1px solid var(--primaryColor);
+    width: 100px;
+    color: var(--primaryColor);
+    border-radius: 5px;
+    
+}
+
+.topProductBar{
+    background: var(--primaryColor);
+    display: flex;
+    align-items:center ;
+    border-radius: 3px;
+    height: 40px;
+    border: 1px solid var(--dimWhite);
+    margin-top: 3px;
+    
+}
+
+
+
+
+/* editBar to appear on edit click */
+.editProductBar{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background: rgb(255, 255, 255);
+    height: 390px;
+    width: 60%;
+    position: absolute;
+    top:2%;
+    left: 20%;
+    border-radius: 16px;
+    border: 5px solid var(--dimWhite);
+    visibility: hidden;
+}
+
+.editProductBar>input{
+    width: 80px;
+    border: 2px solid var(--dimWhite);
+    width: 50%;
+    height: 50px;
+    border-radius: 5px;
+    outline: none;
+    margin: 2px;
+    padding: 5px;
+  
+}
+
+
+.editProductBar>button{
+    font-weight: bold;
+}
+
+/* .editProductBar> .btns>button{
+
+    
+} */
+
+
+
+/* ADD NEW STOCK POPUP */
+.addNewStock{
+    padding: 50px;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+    background: var(--dimWhite);
+    border-radius: 6px;
+    height: 90%;
+    width:60%;
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    visibility:hidden;
+}
+
+#cancelBtn{
+    background: var(--redColor);
+    color: var(--primaryColor);
+    border-radius: 5px;
+    border: 1px solid var(--primaryColor);
+}
+
+#add_btn{
+    background: var(--lightPrimary);
+    color: var(--primaryColor);
+    border-radius: 5px;
+    border: 1px solid var(--primaryColor);
+    width: 100%;
+    height: 100%;
+    text-align: center;
+
+}

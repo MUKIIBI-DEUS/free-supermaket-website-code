@@ -1,7 +1,9 @@
 <?php
     session_start();
 
-
+    if(!isset($_SESSION['userId'])){
+        header('location:index.php');
+    }
 
     //set loginStatus to false and redirect to the login Page
     include('assets/database_connect/database.php');//including the sql server connect logic

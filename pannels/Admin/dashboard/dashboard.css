@@ -196,6 +196,7 @@ body{
 .no{
     /* background: #fa0000; */
     width: 7%;
+    padding-left: 5px;
 }
 
 
@@ -310,12 +311,15 @@ body{
 
     }
 
-    .topOrderBar>p{
+    .topOrderBar>h5{
         font-size: 80%;
     }
-
+    .table_attributes{
+        background: black;
+    }
     .table_attributes p{
         font-size: 50%;
+        
     }
 
     .orderRow p{

@@ -1,0 +1,3 @@
+key features
+-create a pannel that sells items on credit
+-add the pagnation feature on all views to prevent  the browser from crushing due to excess records or rows

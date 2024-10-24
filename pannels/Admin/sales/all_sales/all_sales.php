@@ -9,197 +9,165 @@
 
     <link rel="stylesheet" href="all_sales.css">
     <link rel="stylesheet" href="bootstrap.css">
+    <style>
+        #loader{
+            position:fixed;
+            width: 100%;
+            top:0;
+            left:0;
+            bottom:0;
+            background:gray;
+            color:white;
+            z-index:9999;
+            height:100%;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            border-radius:9px;
+
+           
+        }
+        #boxSized{
+            margin-left:20px;
+        }
+        </style>    
 
 </head>
 
 <body>
+
+<!-- LOADER -->
+
+<div id="loader">
+
+<div class="spinner-border text-light" role="status">
+    <span class="visually-hidden">Loading--------</span>            
+</div>
+
+<span id="boxSized"></span>
+
+<h1>Fresh Mart</h1>
+
+
+
+
+
+</div>
+
+<!-- LOADER  END-->
+
+
+
     <div class="searchSaless">
         <div class="search">
-            <input type="text" placeholder="Search Sales">
+            <input type="text" placeholder="Search Sales by all attributes" id="searchPdt">
             <button>Search</button>
         </div>
        
 
-        <select name="" id="">
-
-            <option value="">Sales_id</option>
-            <option value="">Employee_id</option>
-            <option value="">Product_id</option>
-            <option value="">Product_name</option>
-
-            <option value="">Quantity</option>
-            <option value="">Unit_cost</option>
-            <option value="">Total</option>
-            <option value="">Date of Sale</option>
-            <option value="">time</option>
-        </select>
 
     </div>
 
+
+
+    <!-- STICKY TABLE HEADING -->
+
    <!-- BOOTSTRAP TABLE -->
-    <table class="table table-striped">
-    <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Sales_ID</th>
-      <th scope="col">Employee_id</th>
-      <th scope="col">Product_id</th>
-      <th scope="col">Product Name</th>
-      <th scope="col">Qty</th>
-      <th scope="col">Unit_cost</th>
-      <th scope="col">Total</th>
-      <th scope="col">Date_of_sale</th>
-      <th scope="col">Time</th>
-      
-      <th scope="col" class="actionTitle">Actions</th>
-      <th scope="col" ></th>
-
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="tbRow">
-      <th scope="row" class="tbData">1</th>
-      <td class="tbData">1</td>
-      <td class="tbData">2</td>
-      <td class="tbData">Apples</td>
-      <td class="tbData">4</td>
-      <td class="tbData">1000</td>
-      <td class="tbData">4000</td>
-      <td class="tbData">12/12/2023</td>
-      <td class="tbData">4:00pm</td>
-     
-      <td class="actions editBtn openSalesEditBar tbData">Edit</td>
-      <td class="actions deleteBtn"></td>
-    </tr>
 
 
-   
+   <form action="update_sales_form.php" method="post">
+   <input type="text" name="sid" id="sid" style="visibility:hidden;height:3px;">
+            <table class="table table-striped">
+            <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Sales_ID</th>
+            <th scope="col">Employee_id</th>
+            <th scope="col">Product_id</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Qty</th>
+            <th scope="col">Total</th>
+            <th scope="col">Profit</th>
+            <th scope="col">DOS(YYYY-MM-DD)</th>
+            <th scope="col">Time</th>
+            
+            <th scope="col" class="actionTitle">Actions</th>
+            <th scope="col" ></th>
 
-
-  </tbody>
-</table>
- 
-    </table>
+            </tr>
+        </thead>
+        <tbody id="tbBody">
+            <!-- <tr class="tbRow">
+            <th scope="row" class="tbData">1</th>
+            <td class="tbData">1</td>
+            <td class="tbData">2</td>
+            <td class="tbData">Apples</td>
+            <td class="tbData">4</td>
+            <td class="tbData">4000</td>
+            <td class="tbData">12/12/2023</td>
+            <td class="tbData">4:00pm</td>
+            
+            <td class="actions editBtn openSalesEditBar tbData">Edit</td>
+            <td class="actions deleteBtn"></td>
+            </tr> -->
 
 
 
 
-<!-- EDITBAR -->
-<!-- editBar to appear on any edit click -->
-    <form class="editSalesBar">
-        <div class="mb-3">
-
-       
-            <label for="exampleInputEmail1" class="form-label" style="margin-top:10px;">sales_id</label>
-            <input type="text" class="form-control inpt_values" id="exampleInputEmail1" aria-describedby="emailHelp" autocomplete="off"  readonly disabled >
-          
-        </div>
 
 
-
-
-        <div class="mb-3">
-
-                
-            <label for="exampleInputEmail1" class="form-label" style="margin-top:10px;">Employee_id</label>
-            <input type="text" class="form-control inpt_values" id="exampleInputEmail1" aria-describedby="emailHelp" autocomplete="off" disabled>
-
-        </div>
-
-
-        <div class="mb-3">
-
-                
-            <label for="exampleInputEmail1" class="form-label" style="margin-top:10px;">Product_id</label>
-            <input type="text" class="form-control inpt_values" id="exampleInputEmail1" aria-describedby="emailHelp" autocomplete="off"   >
-
-        </div>
-
-
-       
-        <div class="mb-3">
-
-                
-            <label for="exampleInputEmail1" class="form-label" style="margin-top:10px;">Product_name</label>
-            <input type="text" class="form-control inpt_values" id="exampleInputEmail1" aria-describedby="emailHelp" autocomplete="off"   >
-
-        </div>
-
-   
-
-
-        <div class="mb-3">
-
-                
-            <label for="exampleInputEmail1" class="form-label" style="margin-top:10px;">Qty</label>
-            <input type="text" class="form-control inpt_values" id="exampleInputEmail1" aria-describedby="emailHelp" autocomplete="off"   >
-
-        </div>
-
-
+            <?php
+            
+            try {
+                include("../../../../assets/database_connect/database.php");
+            
+                $sql = "SELECT * FROM sales order by sales_id desc";//pick rowa from the sales table
+                $results = mysqli_query($conn, $sql); // $conn from the database file in the include()
+            
+                if ($results) { // Check if the query was successful and returned a mysqli_result object
+                    if (mysqli_num_rows($results) > 0) { // Check if there are any rows in the products table
+                        // Loop through each row and display each value in the table
+                        while ($row = mysqli_fetch_assoc($results)) {
+                            echo "
+                                    <tr class='tbRow'>
+                                    <th scope='row' class='tbData'>{$row['sales_id']}</th>
+                                    <td class='tbData'>{$row['employee_id']}</td>
+                                    <td class='tbData'>{$row['product_id']}</td>
+                                    <td class='tbData'>{$row['product_Name']}</td>
+                                    <td class='tbData'>{$row['qty']}</td>
+                                    <td class='tbData'>{$row['total']}</td>
+                                    <td class='tbData'>{$row['profit']}</td>
+                                    <td class='tbData'>{$row['date_of_sale']}</td>
+                                    <td class='tbData'>{$row['sale_time']}</td>
+                                    
+                                               <td class='actions'><button class='btn btn-primary'  name='submitForm'>Edit</button></td>
+                                    <td class='actions deleteBtn'></td>
+                                    </tr>";
+                        }
+                    }
+                }
+            } catch (Exception $e) {
+                // Handle any exceptions that might occur
+                echo "An error occurred: " . $e->getMessage();
+            }
+        
+        
+        
+        
+        ?>
 
 
         
-        <div class="mb-3">
-
-                
-            <label for="exampleInputEmail1" class="form-label" style="margin-top:10px;">Unit_cost</label>
-            <input type="text" class="form-control inpt_values" id="exampleInputEmail1" aria-describedby="emailHelp" autocomplete="off"   >
-
-        </div>
 
 
+        </tbody>
+        </table>
+        
+            </table>
+ </form>
 
 
 
-
-
-
-        <div class="mb-3">
-
-                
-            <label for="exampleInputEmail1" class="form-label" style="margin-top:10px;">Total</label>
-            <input type="text" class="form-control inpt_values" id="exampleInputEmail1" aria-describedby="emailHelp" autocomplete="off"   >
-
-        </div>
-
-
-
-
-
-        <div class="mb-3">
-
-                
-            <label for="exampleInputEmail1" class="form-label" style="margin-top:10px;">Date of Sale</label>
-            <input type="text" class="form-control inpt_values" id="exampleInputEmail1" aria-describedby="emailHelp" autocomplete="off"   >
-
-        </div>
-
-
-
-
-        <div class="mb-3">
-
-                
-            <label for="exampleInputEmail1" class="form-label" style="margin-top:10px;">Time</label>
-            <input type="text" class="form-control inpt_values" id="exampleInputEmail1" aria-describedby="emailHelp" autocomplete="off"   >
-
-        </div>
-
-
-
-
-
-        <!-- <button type="submit" class="btn btn-lg btn-success">Add supplier</button> -->
-        <div class="btns">
-            <button class="btn updateSales">Update</button>
-            <button class="btn deleteSales">Delete</button>
-            <button class="btn" id="cancelUpdate">Cancel</button>
-        </div>
-
-
-
-    </form>
 
 
       
@@ -212,11 +180,17 @@
    
 
     <!-- </div> -->
+    <script>
+
+        </script>
 
 
 
 
+    <script>
 
+
+    </script>
 
 
 

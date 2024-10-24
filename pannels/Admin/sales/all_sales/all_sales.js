@@ -1,82 +1,85 @@
+// AJAX
+let searchInput = document.getElementById('searchPdt');
+let records;
 
-//fecthing the openSalesEditBar
-let editBtn=document.querySelectorAll('.openSalesEditBar');
-
-//fecthing the editSalesBar
-let editSalesBar=document.querySelectorAll('.editSalesBar');
-console.log(editSalesBar);
-
-// when an edit button on a row is clicked open the editSalesBar
-
-editBtn.forEach(btnword=>{
-    btnword.addEventListener('click',()=>{
-        
-            editSalesBar[0].style.visibility="visible";
-    })
-})
- 
+searchInput.addEventListener('input', loadProduct);//invoke the loadProduct function when user types in the input
 
 
-//closing the editSalesBar on cancelButton Clicked
-let cancelUpdate=document.getElementById('cancelUpdate');
+// Load product function
+function loadProduct() {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', 'all_sales_api.php?query=' + searchInput.value, true);
 
-console.log(cancelUpdate);
 
-cancelUpdate.addEventListener('click',()=>{
-    editSalesBar[0].style.visibility="hidden";
+    //when waiting for the server display 
+    xhr.onprogress = function() {
+        // Handle progress events here
+        console.log('Loading... please wait');
+        document.getElementById('tbBody').innerHTML = "Loading... please wait";
+    };
+
     
-})
+
+    xhr.onload = function () {
+        if (this.status === 200) {//check for an okay or ready status of a server
+            let results = '';
+            records = JSON.parse(xhr.responseText);
+
+            for (let i in records) {
+                results += `<tr class="tbRow">
+                    <th scope="row" class="tbData">${records[i].sales_id}</th>
+                    <td class="tbData">${records[i].employee_id}</td>
+                    <td class="tbData">${records[i].product_id}</td>
+                    <td class="tbData">${records[i].product_Name}</td>                    
+                    <td class="tbData">${records[i].qty}</td>
+                    <td class="tbData">${records[i].total}</td>
+                    <td class="tbData">${records[i].profit}</td>
+                    <td class="tbData">${records[i].date_of_sale}</td>
+                    <td class="tbData">${records[i].sale_time}</td>
+        
+                                               <td class='actions'><button class='btn btn-primary'  name='submitForm'>Edit</button></td>
+                    <td class="actions deleteBtn"></td>
+                </tr>`;
+            }
+
+            document.getElementById('tbBody').innerHTML = results;//insert fetched results into the table body
 
 
-// FETCHING THE Table Data from Saless and placing them in the editPructBar inputs
-
-// fetching the inputValues from editSalessBar or Pop up
-let inputValues=document.querySelectorAll('.inpt_values');
-
-// console.log('inputValuse  :',inputValues);
 
 
-let tableRow=document.querySelectorAll('.tbRow');//fetching tablerows with class tbRow
+            let tableRow1 = document.querySelectorAll('.tbRow');
+            let updatebtn = document.querySelectorAll('.btn');
+    
+    
+            let sid=document.getElementById('sid');
+                updatebtn.forEach(edtBtn => {
+                    edtBtn.addEventListener('click', () => {
+                        let record = edtBtn.closest('.tbRow'); // get the parent row
+                        let values = record.querySelectorAll('.tbData');
+                        console.log(values[0].innerHTML);
+                        sid.value = values[0].innerHTML.trim();
+    
+                    });
+                });
 
-console.log('table row fetched',tableRow);
+            // Fetching the openProductEditBar after appending the tr into the tbody
 
-//On click of any editBtn fetch a row(tbRow class--html) and on each row fetch all table data( tbDataclass --html) finally place the data into editSales window or div inputs
-editBtn.forEach(edtBtn=>//
-    edtBtn.addEventListener('click',()=>{//On click of any editBtn 
 
-        tableRow.forEach(function(record){ //fetch a row(tbRow class--html)
-            console.log("CLAL"); 
-            record.addEventListener('click',()=>{
 
-                let values=record.querySelectorAll('.tbData');//fetching the data from eachRow selected--- 
-                console.log(values.length);
-                
 
-                for(i=0;i<=values.length-1;i++){//finally place the data into editSales window or div inputs
-                
-                
-                    console.log(values[i].innerHTML);
-                    inputValues[i].value=values[i].innerHTML;
-                }
-                    //nextLogic if i=0 then set input[0] value=values[i].innerHtml
 
-                //does it display the td
-                // values.forEach(e=>{
-                //     let data=e.innerHTML;
-                //     console.log('value :',data);
-                // })
 
-            })
 
-            });
 
+
+
+        } else if (this.status === 404) {
+            console.log('Not found, please check');
         }
+    }
 
-));
-
-
-
-
+    xhr.send();
+}
 
 
 
@@ -84,5 +87,60 @@ editBtn.forEach(edtBtn=>//
 
 
 
-//
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //Handle the loader 
+            document.onreadystatechange=function(){
+                if(document.readyState !=="complete"){
+                    document.querySelector('#loader').style.display="flex";//enable the loader if the page isnt fully loaded
+                    console.log("page isnt ready");
+                }else{
+                    document.querySelector('#loader').style.display="none";//disable the loader if the page is fully loaded
+                    console.log("page is ready");
+                }
+            }
+
+
+
+            let tableRow = document.querySelectorAll('.tbRow');
+            let updatebtn = document.querySelectorAll('.btn');
+    
+    
+            let sid=document.getElementById('sid');
+                updatebtn.forEach(edtBtn => {
+                    edtBtn.addEventListener('click', () => {
+                        let record = edtBtn.closest('.tbRow'); // get the parent row
+                        let values = record.querySelectorAll('.tbData');
+                        console.log(values[0].innerHTML);
+                        sid.value = values[0].innerHTML.trim();
+    
+                    });
+                });

@@ -4,10 +4,10 @@
     $password="";
     $dbName="freshmart";
     $conn="";
-
+    // $conn=mysqli_connect("localhost","root","","freshmart");//create acconection to mysql database
 
     try{
-        $conn=mysqli_connect($server,$userName,$password,$dbName);
+        $conn=mysqli_connect("localhost","root","","freshmart");
 
         if($conn){
             

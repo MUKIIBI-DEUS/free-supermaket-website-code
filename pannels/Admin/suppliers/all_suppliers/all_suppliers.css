@@ -76,6 +76,7 @@ body{
     border-radius: 5px;
     outline: none;
     padding: 2px;
+    width: 400px;
 }
 .searchSuppliers> .search>button{
     cursor: pointer;

@@ -1,13 +1,18 @@
 <?php
 
-        //images
+        ob_start();
+        session_start();
+        $userId=intval($_SESSION['userId']);//fetch user id from the session
+        $ipAddress = $_SERVER['REMOTE_ADDR'];//fetch client ip address
   
         $unitCost=$_POST['unitcost'];
+        $buyingPrice=intval($_POST['buyingPrice']);
+        $expiry_date=$_POST['expiry_date'];
        
         
+        include("../../../../assets/database_connect/database.php");//the database connection file and logic
 
 
-try{
     if(isset($_POST['addProduct'])){
         $productName=$_POST['product_name'];//picking the productName value from its input so to others below
         $category=$_POST['selectedOption'];
@@ -51,27 +56,59 @@ try{
                         //file uploaded succesfully now its high time we sent the data to the database
 
                                 //finally we enjoy the data insertion
-                        include("../../../../assets/database_connect/database.php");//the database connection file and logic
 
-                        $sql="insert into products(product_name,category,unitcost,productImage) values (?,?,?,?)";//(?,?) parameters for variables we are to insert
+
+                        $sql="insert into products(product_name,category,buying_price,unitcost,productImage,expiry_date) values (?,?,?,?,?,?)";//(?,?) parameters for variables we are to insert
 
                         $statement=$conn->prepare($sql);//prepare the sql statment for parameters ??
 
-                        $statement->bind_param("ssss",$productName,$category,$unitCost,$target_file);//add the parameters required which are 4(?,?,?,?)
+                        $statement->bind_param("ssssss",$productName,$category,$buyingPrice,$unitCost,$target_file,$expiry_date);//add the parameters required which are 4(?,?,?,?)
 
-                        $statement->execute();
+                        if($statement->execute()){// if the product has been added to the database
+
+                            $last_id_sql_log="SELECT MAX(product_id) AS last_id from products";//to obtain the last id inserted into products table
+
+                            $last_id_results=$conn->query($last_id_sql_log);
+                            $last_id_row_info=mysqli_fetch_assoc($last_id_results);
+                            $last_id_value=intval($last_id_row_info['last_id']);
+
+                            //final log sql for supplier registration
+                            $sql_for_logs="INSERT INTO logs(user_id_for_logs,action_type,described,new_values,ip_address,affected_table,affected_record_id) VALUES($userId,'add new product','empty','product_name	=>$productName::category=>$category::buyingPrice=>$buyingPrice::unitcost=>$unitCost::productImage=>$target_file','$ipAddress','products',$last_id_value)";
+
+
+                            $log_add_new_product=$conn->query($sql_for_logs);//insert log
+                        }
 
 
                         //CREATING A NEW CONECTION TO ADD pdtName and inventoryNo to the inventory table which is related to products with a primary key from products to inventory
 
-                        $connection2=mysqli_connect("localhost","root","","freshmart");
+                        $connection2=$conn;
 
                         if($connection2){
                             $sql2="insert into inventory(product_name,inventory_no) values(?,?)";
 
                             $statement2=$connection2->prepare($sql2);
                             $statement2->bind_param("ss",$productName,$initialStock);
-                            $statement2->execute();
+                            if($statement2->execute()){//if the product intials stock has been added to the database then log the info to logs table
+
+
+
+                            //fetch the last supplier id inserted in supplier for logs
+
+                                    $last_id_sql_log="SELECT MAX(product_id) AS last_id from inventory";
+
+                                    $last_id_results=$conn->query($last_id_sql_log);
+                                    $last_id_row_info=mysqli_fetch_assoc($last_id_results);
+                                    $last_id_value=intval($last_id_row_info['last_id']);
+
+                                    //final log sql for supplier registration
+                                    $sql_for_logs="INSERT INTO logs(user_id_for_logs,action_type,described,new_values,ip_address,affected_table,affected_record_id) VALUES($userId,'add initial product stock','empty','product_name=>$productName::initialStock=>$initialStock','$ipAddress','inventory',$last_id_value)";
+
+
+                                    $log_add_product_intial_stock=$conn->query($sql_for_logs);//insert log
+
+
+                            }
 
                             
 
@@ -115,9 +152,7 @@ try{
 
 
 
-}catch(Exception $e){
-    echo "Error Message ".$e->getMesage();
-}
+
 
 
 

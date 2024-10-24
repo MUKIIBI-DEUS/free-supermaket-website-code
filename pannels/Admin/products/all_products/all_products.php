@@ -13,9 +13,64 @@
     <link rel="stylesheet" href="bootstrap.css">
 
 
+
+    <style>
+        #loader{
+            position:fixed;
+            width: 100%;
+            top:0;
+            left:0;
+            bottom:0;
+            background:gray;
+            color:white;
+            z-index:9999;
+            height:100%;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            border-radius:9px;
+
+           
+        }
+        #boxSized{
+            margin-left:20px;
+        }
+
+
+
+    </style>
+
+
 </head>
 
 <body>
+
+
+<!-- LOADER -->
+
+<div id="loader">
+
+<div class="spinner-border text-light" role="status">
+    <span class="visually-hidden">Loading--------</span>            
+</div>
+
+<span id="boxSized"></span>
+
+<h1>Fresh Mart</h1>
+
+
+
+
+
+</div>
+
+<!-- LOADER  END-->
+
+
+
+
+
+
     <div class="searchProducts">
         <div class="search">
             <input type="text" placeholder="Search Product" id="searchPdt">
@@ -24,20 +79,13 @@
        
 
 
-        <select name="" id="">
-
-            <option value="">P_Name</option>
-            <option value="">Category</option>
-            <option value="">Price</option>
-            <option value="">P_ID</option>
-            <option value="">UnitCost</option>
-            <option value=""></option>
-        </select>
-
     </div>
 
 
    <!-- BOOTSTRAP TABLE -->
+   <form action="edit_product_form.php" method="post" id="inventoryform"> 
+   <input type="text" name="sid" id="sid" style="visibility:hidden;height:20px;">
+
     <table class="table table-striped">
     <table class="table">
   <thead>
@@ -45,6 +93,7 @@
       <th scope="col">Product_ID</th>
       <th scope="col">Product Name</th>
       <th scope="col">Category</th>
+      <th scope="col">buying_price</th>
       <th scope="col">UnitCost</th>
       <th scope="col">ProductImage</th>
       <th scope="col" class="actionTitle">Actions</th>
@@ -82,11 +131,13 @@
                           <th scope='row' class='tbData'>{$row['product_id']}</th>
                           <td class='tbData'>{$row['product_name']}</td>
                           <td class='tbData'>{$row['category']}</td>
+                          <td class='tbData'>{$row['buying_price']}</td>
+                          
                           <td class='tbData'>{$row['unitcost']}</td>
 
                           <td class='tbData'><img src='{$row['productImage']}' alt='sorry'style='height:70px;width:90px;border-radius:5px'></td>
 
-                          <td class='actions editBtn openProductEditBar tbData'>Edit</td>
+                          <td class='actions editBtn openProductEditBar tbData'><button class='btn btn-primary editpdtBtn'>Edit</button></td>
                           <td class='actions deleteBtn'></td>
                       </tr>";
                   }
@@ -135,37 +186,6 @@
 </table>
  
     </table>
-
-
-
-
-
-<!-- EDITBAR -->
-<!-- editBar to appear on any edit click -->
-    <form class="editProductBar" action="editPdtdatabase_logic.php" method="post">
-   
-      <input type="text" placeholder="Product Id" class="inpt_values" readonly  name="product_id">
-
-
-      <input type="text" placeholder="Product Name" class="inpt_values" name="product_name">
-
-
-      <input type="text" placeholder="Category" class="inpt_values" name="category">
-
-      <input type="text" placeholder="Unit Cost" class="inpt_values" name="unitCost">
-
-
- 
-
-
-          <input type="submit" class="updateProduct btn btn-primary" name="updateProduct" value="Update">
-
-          <input type="submit" class="deleteProduct btn btn-danger" name="deleteProduct" value="Remove" >
-
-          <button id="cancelUpdate" class="btn btn-dark"><a href="all_products.php" style="text-decoration:none;">Cancel</a></button>
-
-
-
     </form>
 
 
@@ -176,6 +196,41 @@
 
 
 
+
+
+    <script>
+         let sid=document.getElementById('sid');
+         let editproductbtn = document.querySelectorAll('.editpdtBtn');
+
+         editproductbtn.forEach(edtBtn => {
+    edtBtn.addEventListener('click', () => {
+        let record = edtBtn.closest('.tbRow'); // get the parent row
+        let values = record.querySelectorAll('.tbData');
+        console.log(values[0].innerHTML);
+        sid.value = values[0].innerHTML.trim();
+
+
+        //direct to the editStock form 
+        confrirmAction("editStock_form.php", "Are you sure you want to edit this products stock ?");
+
+    });
+});
+
+
+
+
+
+            //Handle the loader 
+document.onreadystatechange=function(){
+    if(document.readyState !=="complete"){
+        document.querySelector('#loader').style.display="flex";//enable the loader if the page isnt fully loaded
+        console.log("page isnt ready");
+    }else{
+        document.querySelector('#loader').style.display="none";//disable the loader if the page is fully loaded
+        console.log("page is ready");
+    }
+}
+        </script>
     <script src="allproducts.js"></script>
 </body>
 </html>

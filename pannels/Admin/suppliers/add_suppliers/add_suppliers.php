@@ -8,11 +8,51 @@
     <link rel="stylesheet" href="bootstrap.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        #loader{
+            position:fixed;
+            width: 100%;
+            top:0;
+            left:0;
+            bottom:0;
+            background:gray;
+            color:white;
+            z-index:9999;
+            height:100%;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            border-radius:9px;
+
+           
+        }
+        #boxSized{
+            margin-left:20px;
+        }
+        </style>
 
 
 </head>
 <body>
+<!-- LOADER -->
 
+<div id="loader">
+
+<div class="spinner-border text-light" role="status">
+    <span class="visually-hidden">Loading--------</span>            
+</div>
+
+<span id="boxSized"></span>
+
+<h1>Fresh Mart</h1>
+
+
+
+
+
+</div>
+
+<!-- LOADER  END-->
 <!-- MAINCONTAINER -->
 <div class="mainContainer">
 <form action="addSupplierDatabaselogic.php" method="post">
@@ -62,7 +102,7 @@
 
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">ProductID</label>
-                    <input type="number" class="form-control" id="productId" aria-describedby="emailHelp" autocomplete="off" required name="product_id" readonly>
+                    <input type="number" class="form-control" id="productId" aria-describedby="emailHelp" autocomplete="off" required name="product_id" placeholder="select a product id from the  table">
                 
                 </div>
 
@@ -81,11 +121,17 @@
 
 
 
-
+       
 
 <!-- Product List afterFrom -->
     <div class="productList">
+        <!-- fill the screen -->
+        <!-- <button><a href="add_suppliers.php">Full screen</a></button> -->
+
         <p>Select a product for auto fill</p>
+
+
+        <input type="text" placeholder="Search product" style="border-radius:4px;border:2px solid gray;outline:none;text-align:center;position:sticky;top:0;" id="searchPdt">
 
 
 
@@ -101,7 +147,7 @@
 
     </tr>
   </thead>
-  <tbody>
+  <tbody id="tbBody">
 
 
     <?php
@@ -164,6 +210,7 @@
     </div>
 </div>
         
+
 
 
 

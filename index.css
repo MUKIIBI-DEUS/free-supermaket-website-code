@@ -6,22 +6,35 @@
     overflow: hidden;
 }
 
-body{
+body {
     height: 100vh;
-    background:url('./banana.jpg');
+    margin: 0; /* Ensure there's no margin on the body */
+    background: linear-gradient(300deg, blue, green, yellow);
+    background-size: 300% 300%; /* Increase background size for smoother transition */
+    animation: gradient-animation 30s ease infinite; /* Adjusted duration for slower animation */
     background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* BACKGROUND KEYFRAMES */
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 h3{
     color:#ffffff;
-    background: #0c5f1a;
+    background: #000000;
     padding: 10px;
     border-radius: 5px;
     margin-top: -10px;

@@ -1,3 +1,38 @@
+<?php
+// Start output buffering and session
+ob_start();
+session_start();
+
+// Check if user ID is set and role is exactly admin to avoid panel entrance without login with right credentials
+if (!isset($_SESSION['userId']) || $_SESSION['userRole']!=="Admin") {
+    header("Location: ../../index.php");//if the creteria is not then automatically logout and destroy session
+    session_unset(); // Unset $_SESSION variable for this page
+    session_destroy(); // Destroy session data in storage
+    exit();
+}
+
+include("../../assets/database_connect/database.php");
+
+// Check for session inactivity and destroy session if necessary
+if ($conn) {
+    if (isset($_SESSION['last_activity'])) {
+        $inactive_time = time() - $_SESSION['last_activity'];
+        $inactive_threshold = 30 * 60; // 10 minutes in seconds
+        if ($inactive_time > $inactive_threshold) {
+            $e_id = $_SESSION['userId']; // Set the E_ID from session variable
+            $updateLoginStatus = "UPDATE employee SET loginStatus='false' WHERE e_id=$e_id";
+            $updateStatus = mysqli_query($conn, $updateLoginStatus);
+
+            session_unset(); // Unset $_SESSION variable for this page
+            session_destroy(); // Destroy session data in storage
+
+            header("Location: ../../index.php"); // Redirect to the login page
+            exit();
+        }
+    }
+}
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,18 +41,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
     <link rel="stylesheet" href="main_Admin.css">
+    <link rel="stylesheet" href="bootstrap.css">
 
 
 
-<!-- prevent accessing the admin -->
-    <!-- <script type = "text/javascript" >
-   function preventBack(){window.history.forward();}
-    setTimeout("preventBack()", 0.02);
-    window.onunload=function(){null};
-</script> -->
+
+    <style>
+        #loader{
+            position:fixed;
+            width: 100%;
+            top:0;
+            left:0;
+            bottom:0;
+            background:#464646;
+            color:#fff;
+            z-index:9999;
+            height:100%;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            overflow: hidden;
+            background: linear-gradient(300deg,green,green,blue);
+            background-size: 180% 180%;
+            animation: gradient-animation 18s ease infinite;
+
+           
+        }
+
+
+
+
+        @keyframes gradient-animation {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+        }
+        .boxSized{
+            margin-left:20px;
+        }
+        span{
+            height:90px;
+            overflow: hidden;
+
+        }
+        .wordLogo{
+            overflow: hidden;
+        }
+        .l{
+            font-size:10px;
+            overflow: hidden;
+        }
+
+
+
+    </style>
     
 </head>
 <body>
+
+
+    <!-- LOADER -->
+
+        <div id="loader">
+
+    <div class="spinner-border text-light" role="status" class="wordLogo">
+        <span class="visually-hidden" >Loading--------</span>  
+        <h6 class="wordLogo l">F</h6>        
+    </div>
+
+    <span class="boxSized"></span>
+
+    <h1 class="wordLogo">Fresh Mart</h1>
+
+    <span class="boxSized"></span>
+
+    <h6 class="wordLogo">please wait</h6>
+    <h6 class="wordLogo">.......</h6>
+
+
+
+
+
+
+    </div>
+
+<!-- LOADER  END-->
+    <!-- LOADER END -->
+
 
 
 <!-- Main container -->
@@ -28,13 +144,14 @@
     <div class="left_sidebar">
 
         <div class="company_title">
+           
+       
+                <img src="../../assets/images/companyLogo.png" alt="SORRY" id="companyLogo">
+                <!--     -->
+                <p>Fresh Mart POS</p>
+        
 
-            <div class="pack1">
-                <img src="../../assets/images/companyLogo.png" alt="SORRY">
-                <h3 id="companyTitle">FRESH MART</h3>
-            </div>
-
-            <!-- <h3 class="moto"></h3> -->
+            <h3 class="moto"></h3>
 
         </div>
 
@@ -44,8 +161,8 @@
 
     <!-- main menuBar title-------- -->
 
-        <div class="mainMenuTitle">
-            <h1 id="mainMenu">MAIN MENU</h1>
+        <div class="mainMenuTitle" style="overflow: hidden;">
+            <p id="mainMenu" style="color:white;font-size:20px;margin-left:10px;">MAIN MENU</p>
         </div>
 
         <!-- dashboard option -->
@@ -70,6 +187,20 @@
 
          </div>
 
+
+
+        <!--Reoders  -->
+        <div class="Option">
+                
+            <img src="../../assets/images/again.png" alt="SORRY">
+        
+            <p>Re order products</p>
+        
+        
+        
+        
+        </div>            
+
          <!-- Store -->
 
          <div class="Option">
@@ -93,14 +224,47 @@
         
         
         
-        </div>          
+        </div> 
+        
+        
+
+
+        <!--Profits  -->
+        <div class="Option">
+                
+            <img src="../../assets/images/white_product.png" alt="SORRY">
+        
+            <p>Profits</p>
+        
+        
+        
+        
+        </div>      
+        
+
+
+
+                <!--Logs  -->
+                <div class="Option">
+                
+                <img src="../../assets/images/whiteList.png" alt="SORRY">
+            
+                <p>Logs</p>
+            
+            
+            
+            
+            </div>   
+
+
 
         <!-- UserAccounts -->
         <div class="Option">
                 
             <img src="../../assets/images/white_user136.png" alt="SORRY">
         
-            <p>User Accounts</p>
+            <p><a href="userAccounts/usersFirst.php" style="color:white;text-decoration:none;">Accounts</a></p>
+
         
         
         
@@ -111,7 +275,7 @@
         <!-- Logout -->
         <div class="Option">
                 
-            <img src="../../assets/images/whiteList.png" alt="SORRY">
+            <img src="../../assets/images/whiteLogout.png" alt="SORRY">
         
             <p><a href="../../logoutPage.php" style="color:white;text-decoration:none;">Logout</a></p>
         
@@ -143,7 +307,6 @@
             <!-- welcome message -->
            <div class="welcomeBar">
                 <?php
-                       session_start();//start the session 
 
 
 
@@ -153,7 +316,6 @@
                         exit();
                        }
 
-                       $conn=mysqli_connect("localhost","root","","freshmart");
 
                        // Check for session inactivity and destroy session if necessary
                        if($conn){
@@ -284,6 +446,23 @@
 
 
 <!-- JAVASCRIPT -->
+
+<script>
+        // Handle the loader 
+        document.onreadystatechange = function() {
+            if (document.readyState !== "complete") {
+                document.querySelector('#loader').style.display = "flex"; // Enable the loader if the page isn't fully loaded
+                // console.log("page isn't ready");
+            } else {
+                document.querySelector('#loader').style.display = "none"; // Disable the loader if the page is fully loaded
+                // console.log("page is ready");
+            }
+        }
+    </script>
+
+
+
+
 <script>
 
 window.addEventListener('beforeunload', function (event) {
@@ -300,9 +479,6 @@ window.addEventListener('beforeunload', function (event) {
 
 
 
-<?php 
-
-
-
-
+<?php
+ob_end_flush();
 ?>

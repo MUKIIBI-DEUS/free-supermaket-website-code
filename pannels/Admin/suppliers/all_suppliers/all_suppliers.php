@@ -10,31 +10,69 @@
     <link rel="stylesheet" href="all_suppliers.css">
     <link rel="stylesheet" href="bootstrap.css">
 
+
+    <style>
+        #loader{
+            position:fixed;
+            width: 100%;
+            top:0;
+            left:0;
+            bottom:0;
+            background:gray;
+            color:white;
+            z-index:9999;
+            height:100%;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            border-radius:9px;
+
+           
+        }
+        #boxSized{
+            margin-left:20px;
+        }
+        </style>
+
 </head>
 
 <body>
+<!-- LOADER -->
+
+<div id="loader">
+
+<div class="spinner-border text-light" role="status">
+    <span class="visually-hidden">Loading--------</span>            
+</div>
+
+<span id="boxSized"></span>
+
+<h1>Fresh Mart</h1>
+
+
+
+
+
+</div>
+
+<!-- LOADER  END-->    
 
     <div class="searchSuppliers">
         <div class="search">
-            <input type="text" placeholder="Search supplier">
+            <input type="text" placeholder="Search supplier by all attributes" id="searchPdt">
             <button>Search</button>
         </div>
        
 
-        <select name="" id="">
 
-            <option value="">Supplier.ID</option>
-            <option value="">F_name</option>
-            <option value="">L_name</option>
-            <option value="">S_contact</option>
-            <option value="">Location</option>
-            <option value="">Product</option>
-            <option value=""></option>
-        </select>
 
     </div>
 
    <!-- BOOTSTRAP TABLE -->
+   <form action="update_supplier_details_form.php" method="post">    
+
+   <input type="text" name="supplier_id" id="sid" style="visibility:hidden;height:3px;">
+
     <table class="table table-striped">
     <table class="table">
   <thead>
@@ -50,7 +88,7 @@
 
     </tr>
   </thead>
-  <tbody>
+  <tbody id="tbBody">
 
 
 
@@ -76,8 +114,8 @@
                             <td class='tbData'>{$row['product_id']}</td>
                     
                       
-                            <td class='actions editBtn openSupplierEditBar tbData'>Edit</td>
-                            <td class='actions deleteBtn'></td>
+                            <td class='actions editBtn openSupplierEditBar tbData'><button class='btn btn-primary'  name='submitForm'>Edit</button></td>
+                           
                           </tr>";
                         }
                     }
@@ -106,6 +144,8 @@
  
     </table>
 
+    </form>
+
 
 
 
@@ -113,56 +153,8 @@
 <!-- editBar to appear on any edit click -->
     <!-- <div class="editSupplierBar"> -->
    
-    <form class="editSupplierBar" action="all_users_db_logic.php" method="post">
-        <div class="mb-3">
+    
 
-       
-            <label for="exampleInputEmail1" class="form-label" style="margin-top:10px;">Supplier_id</label>
-            <input type="text" class="form-control inpt_values" id="exampleInputEmail1" aria-describedby="emailHelp" autocomplete="off"  readonly  name="supplier_id">
-          
-        </div>
-
-
-
-
-        <div class="mb-3">
-
-                
-            <label for="exampleInputEmail1" class="form-label" style="margin-top:10px;">First name</label>
-            <input type="text" class="form-control inpt_values" id="exampleInputEmail1" aria-describedby="emailHelp" autocomplete="off" name="firstName">
-
-        </div>
-
-
-        <div class="mb-3">
-
-                
-            <label for="exampleInputEmail1" class="form-label" style="margin-top:10px;">Last Name</label>
-            <input type="text" class="form-control inpt_values" id="exampleInputEmail1" aria-describedby="emailHelp" autocomplete="off" name="lastName"   >
-
-        </div>
-
-
-       
-        <div class="mb-3">
-
-                
-            <label for="exampleInputEmail1" class="form-label" style="margin-top:10px;">Contact</label>
-            <input type="text" class="form-control inpt_values" id="exampleInputEmail1" aria-describedby="emailHelp" autocomplete="off" name="contact"   >
-
-        </div>
-
-   
-
-
-        <div class="mb-3">
-
-                
-            <label for="exampleInputEmail1" class="form-label" style="margin-top:10px;">Location</label>
-            <input type="text" class="form-control inpt_values" id="exampleInputEmail1" aria-describedby="emailHelp" autocomplete="off"
-            name="location"   >
-
-        </div>
 
 
 
@@ -171,42 +163,7 @@
 
 
 
-        <div class="mb-3">
-
-                
-            <label for="exampleInputEmail1" class="form-label" style="margin-top:10px;">Product_id</label>
-            <input type="text" class="form-control inpt_values" id="exampleInputEmail1" aria-describedby="emailHelp" autocomplete="off" name="product_id"   >
-
-        </div>
-
-
-
-
-
-       
-
-
-
-
-
-        <!-- <button type="submit" class="btn btn-lg btn-success">Add supplier</button> -->
-        <div class="btns">
-            <button class="btn updateSales" name="updateSupplier">Update</button>
-            <button class="btn deleteSales" name="deleteBtn">Delete</button>
-            <button class="btn" id="cancelUpdate"><a href="all_suppliers.php" style='text-decoration: none; color: #ffffff;'>Cancel</a></button>
-        </div>
-
-
-
-    </form>
-
-
-
-
-
-
-
-
+   
 
     <script src="all_suppliers.js"></script>
 </body>

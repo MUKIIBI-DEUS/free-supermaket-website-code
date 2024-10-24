@@ -3,7 +3,7 @@
 
 
 
-    $conn=mysqli_connect("localhost","root","","freshmart");
+include("../../../../assets/database_connect/database.php");
 
     if($conn){
         try{
@@ -76,8 +76,11 @@
                                 $statement->execute();
         
         
-                                
-                                echo "<br>"."<div style='background:white;border:1px solid black';padding:50px;><h1 style='color:green;'>Data sent successfully !!!!!</h1></div>";
+
+                                echo "<div style='background-color: #C6F7D0; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);'>
+                                <i style='font-size: 48px; color: #34c759;' class='fas fa-check-circle'></i>
+                                <h2 style='font-weight: bold; margin-top: 10px;'>New User has been registered successfully!</h2>
+                                <p style='margin-bottom: 20px;'>New User has been registered successfully.</p>";
         
         
         
